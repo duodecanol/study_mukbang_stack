@@ -1,13 +1,20 @@
 from pathlib import Path
-from pprint import pprint
+import subprocess
 
 def handler(event, context):
     """
     Lambda function handler
     """
     print("Lambda running")
-    pprint(event)
-    pprint(context)
+    print(event)
+    print(context.__dict__)
 
-    opt = Path("/opt")
-    pprint(list(opt.iterdir()))
+    command = 'ls -lahR /opt'
+    process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
+    output, error = process.communicate()
+
+    if error:
+        print(error.decode())
+    print(output.decode())
+
+
