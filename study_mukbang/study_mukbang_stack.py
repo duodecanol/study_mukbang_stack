@@ -59,7 +59,7 @@ class StudyMukbangStack(Stack):
         # assign notification for the s3 event type (ex: OBJECT_CREATED)
         s3_event_source.add_event_notification(
             _s3.EventType.OBJECT_CREATED, notif,
-            _s3.NotificationKeyFilter(suffix="*.json"),
+            _s3.NotificationKeyFilter(suffix=".json"),
         )
 
         # The code that defines your stack goes here
